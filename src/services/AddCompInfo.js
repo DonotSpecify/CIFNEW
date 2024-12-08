@@ -6,17 +6,12 @@ const DB_VERSION = 3;
 const initDB = async (data) => {
   const db = await openDB(DB_NAME, DB_VERSION, {
     upgrade(db, oldVersion, newVersion, transaction) {
-      // // 删除不存在的数据表
-      // for (const storeName of db.objectStoreNames) {
-      //   if (!data[storeName]) {
-      //     db.deleteObjectStore(storeName);
-      //   }
-      // }
+      let ProvienceVec = ["上海市","北京市"];
       // 创建新的对象仓库
-      for (const key in data) {
-        if (!db.objectStoreNames.contains(key)) {
-          console.log("key----------",key);
-          db.createObjectStore(key, { keyPath: 'id' });
+      for (let i = 0; i < ProvienceVec.length; i++) {
+        if (!db.objectStoreNames.contains(ProvienceVec[i])) {
+          console.log("key----------",ProvienceVec[i]);
+          db.createObjectStore(ProvienceVec[i], { keyPath: 'id' });
         }
       }
     },
