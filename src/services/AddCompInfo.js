@@ -6,7 +6,15 @@ const DB_VERSION = 3;
 const initDB = async (data) => {
   const db = await openDB(DB_NAME, DB_VERSION, {
     upgrade(db, oldVersion, newVersion, transaction) {
-      let ProvienceVec = ["上海市","北京市"];
+    let ProvienceVec = [
+        "北京市", "天津市", "河北省", "山西省", "内蒙古自治区",
+        "辽宁省", "吉林省", "黑龙江省", "上海市", "江苏省",
+        "浙江省", "安徽省", "福建省", "江西省", "山东省",
+        "河南省", "湖北省", "湖南省", "广东省", "广西壮族自治区",
+        "海南省", "重庆市", "四川省", "贵州省", "云南省",
+        "西藏自治区", "陕西省", "甘肃省", "青海省", "宁夏回族自治区",
+        "新疆维吾尔自治区", "香港特别行政区", "澳门特别行政区", "台湾省"
+    ];
       // 创建新的对象仓库
       for (let i = 0; i < ProvienceVec.length; i++) {
         if (!db.objectStoreNames.contains(ProvienceVec[i])) {
